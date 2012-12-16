@@ -1,19 +1,22 @@
 # get the numbers 0 - 15 in binary as all possible starting toggler states
 # add 2 at the end for the constant truth teller
-starting_toggler_states = (0..15).map do |x|
-  y = x.to_s 2
-  x = (("0" * (4 - y.length)) + y).split('') + ["2"]
-end
 
-puts starting_toggler_states
+# generation could be simplified to just making arrays with 0-4 1s with the
+# rest being 0s
+
+starting_toggler_states = (1..4).map do |x|
+  ([0] * (4 - x)) + ([1] * x) + [2]
+end
 
 possible_configurations = []
 
 starting_toggler_states.each do |x|
   x.permutation(5).each do |y|
-    possible_configurations << y unless possible_configurations.index(y)
+    possible_configurations << y unless possible_configurations.index y
   end
 end
+
+possible_configurations.each do |x| puts x.join end
 
 def verify_answer
   puts "f"
