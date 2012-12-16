@@ -1,9 +1,8 @@
 # get the numbers 0 - 15 in binary as all possible starting toggler states
 # add 2 at the end for the constant truth teller
-starting_toggler_states = []
-(0..15).each do |x|
+starting_toggler_states = (0..15).map do |x|
   y = x.to_s 2
-  starting_toggler_states << (("0" * (4 - y.length)) + y).split('') + ["2"]
+  x = (("0" * (4 - y.length)) + y).split('') + ["2"]
 end
 
 possible_configurations = []
@@ -15,7 +14,7 @@ starting_toggler_states.each do |x|
 end
 
 def verify_answer
-  
+  puts "f"
 end
 
 # return each successful identification of the truth-teller
@@ -26,7 +25,7 @@ end
 # iterate through the permutations and ask questions using a block
 def ask bar
   bar.each do |arr|
-    puts yield arr
+    return yield arr
   end
 end
 
@@ -39,6 +38,9 @@ end
 # to determine the final result of this particular test.
 def take_questions pair
   return pair.inject(true) {|x| ask bar x}
+end
 
 # array of paired procs as questions iterated through and asked.
-# each encodes the expected 
+# each encodes the expected
+
+gets
