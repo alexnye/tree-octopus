@@ -5,6 +5,8 @@ starting_toggler_states = (0..15).map do |x|
   x = (("0" * (4 - y.length)) + y).split('') + ["2"]
 end
 
+puts starting_toggler_states
+
 possible_configurations = []
 
 starting_toggler_states.each do |x|
